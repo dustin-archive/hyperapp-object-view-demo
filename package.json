@@ -7,12 +7,12 @@
   "main": "src/app.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/whaaaley/hyperapp-object-view-test.git"
+    "url": "git+https://github.com/whaaaley/hyperapp-object-view-demo.git"
   },
   "bugs": {
-    "url": "https://github.com/whaaaley/hyperapp-object-view-test/issues"
+    "url": "https://github.com/whaaaley/hyperapp-object-view-demo/issues"
   },
-  "homepage": "https://github.com/whaaaley/hyperapp-object-view-test#readme",
+  "homepage": "https://github.com/whaaaley/hyperapp-object-view-demo#readme",
   "dependencies": {
     "hyperapp": "^1.1.2"
   },
