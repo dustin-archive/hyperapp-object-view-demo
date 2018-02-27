@@ -3,6 +3,8 @@
 
 > A Hyperapp component that renders JavaScript objects with syntax highlighting.
 
+[**View Demo**](https://hyperapp-object-view-demo.netlify.com/)
+
 ![screenshot](screenshot.png)
 
 ## Install and Setup
