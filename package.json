@@ -1,5 +1,5 @@
 {
-  "name": "hyperapp-object-view-test",
+  "name": "hyperapp-object-view-demo",
   "version": "0.0.0",
   "description": "A Hyperapp component that renders JavaScript objects with syntax highlighting.",
   "author": "Dustin Dowell <dustindowell2@gmail.com>",
