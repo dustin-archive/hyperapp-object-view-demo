@@ -37,17 +37,15 @@ const state = {
   undefined: void 0
 }
 
-const actions = {}
-
-const view = (...args) =>
+const view = state =>
   h('div', { class: 'app' }, [
     h('img', { src: 'images/hyperapp.png' }),
     h('div', { class: 'debug' }, [
       ObjectView({
         key: 'state',
-        value: args[0]
+        value: state
       })
     ])
   ])
 
-app(state, actions, view, document.body)
+app(state, {}, view, document.body)
