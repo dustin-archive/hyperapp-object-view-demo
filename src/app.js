@@ -42,10 +42,12 @@ const actions = {}
 const view = (...args) =>
   h('div', { class: 'app' }, [
     h('img', { src: 'images/hyperapp.png' }),
-    ObjectView({
-      key: 'state',
-      value: args[0]
-    })
+    h('div', { class: 'debug' }, [
+      ObjectView({
+        key: 'state',
+        value: args[0]
+      })
+    ])
   ])
 
 app(state, actions, view, document.body)

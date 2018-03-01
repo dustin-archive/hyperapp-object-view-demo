@@ -94,10 +94,6 @@ button {
 // # Helpers
 // =============================================================================
 
-._code {
-  white-space: pre;
-}
-
 ._material-icons {
   font-family: 'Material Icons';
   font-feature-settings: 'liga'; // IE
@@ -117,6 +113,18 @@ button {
 //
 // # Styles
 // =============================================================================
+
+.debug {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  max-width: 320px;
+  max-height: calc(100vh - 24px);
+  border-radius: 4px;
+  box-shadow: $shadow-top-1;
+  overflow: scroll;
+  z-index: 1;
+}
 
 .app {
   display: flex;
