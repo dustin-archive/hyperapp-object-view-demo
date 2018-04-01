@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/whaaaley/hyperapp-object-view-demo#readme",
   "dependencies": {
-    "@whaaaley/hyperapp-object-view": "0.0.0",
+    "@whaaaley/hyperapp-object-view": "0.0.1",
     "hyperapp": "^1.2.5"
   },
   "devDependencies": {
