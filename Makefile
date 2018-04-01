@@ -35,6 +35,7 @@ minify:
 
 setup:
 	npm i \
+		@whaaaley/hyperapp-object-view \
 		hyperapp
 	npm i -D \
 		@jamen/dev-server \
