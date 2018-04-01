@@ -2,9 +2,9 @@
 'use strict'
 
 import { h, app } from 'hyperapp'
-import { ObjectView } from '@whaaaley/hyperapp-object-view'
+import ObjectView from '@whaaaley/hyperapp-object-view'
 
-const state = {
+var state = {
   array: [
     'value0',
     'value1',
@@ -18,7 +18,9 @@ const state = {
     }
   ],
   boolean: false,
-  function: x => x,
+  function: function (x) {
+    return x
+  },
   null: null,
   number: 1234,
   object: {
@@ -37,17 +39,18 @@ const state = {
   undefined: void 0
 }
 
-const actions = {}
+var actions = {}
 
-const view = (...args) =>
-  h('div', { class: 'app' }, [
-    h('img', { src: 'images/hyperapp.png' }),
-    h('div', { class: 'debug' }, [
+function view (state) {
+  return h('div', { class: 'app' }, [
+    h('img', { src: 'images/hyperapp-graphic-small-jp.png' }),
+    h('div', { class: 'object-view' }, [
       ObjectView({
         key: 'state',
-        value: args[0]
+        value: state
       })
     ])
   ])
+}
 
-app(state, actions, view, document.body)
+app(state, actions, view, document.getElementById('app'))

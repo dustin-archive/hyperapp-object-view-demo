@@ -1,32 +1,27 @@
-# GNU Make 3.8.2 or above
 
-PATH := $(PATH):node_modules/.bin
+PATH := node_modules/.bin:$(PATH)
 SHELL := /bin/bash
 
-.ONESHELL:
 .SILENT:
 
-all: build
-	babel dist/app.js --presets=@babel/preset-es2015 | uglifyjs -o dist/app.js -c -m --source-map "url='app.js.map',content='dist/app.js.map'" &
-	postcss dist/app.css -o dist/app.css -u autoprefixer -m
-	cleancss dist/app.css -o dist/app.css --source-map --source-map-inline-sources
+all: prep js css minify
 
-demo: build
+demo: production all
 	dev-server dist --watch 'src/**/*' 'make'
 
-start: build
+start: development prep js css
 	dev-server dist --watch 'src/**/*.js' 'make js' --watch 'src/**/*.scss' 'make css'
 
-build: prep js css
+development:
+	cp .env-development .env
+
+production:
+	cp .env-production .env
 
 prep:
 	rm -rf dist
 	mkdir dist
-	cp -r fonts dist
-	cp -r images dist
-	cp favicon.png dist
-	cp index.html dist
-	cp sitemap.xml dist
+	cp -r images index.html favicon.png sitemap.xml dist
 
 js:
 	env $$(cat .env) rollup src/app.js -o dist/app.js -f iife -m -c
@@ -34,19 +29,17 @@ js:
 css:
 	node-sass src/app.scss -o dist --source-map true --source-map-contents
 
+minify:
+	uglifyjs dist/app.js -o dist/app.js -c -m --source-map content='dist/app.js.map',url='app.js.map'
+	cleancss dist/app.css -o dist/app.css --source-map --source-map-inline-sources
+
 setup:
-	cp .env-example .env
-	npm i hyperapp
-	npm i -D  \
-	  @babel/cli \
-	  @babel/core \
-	  @babel/preset-es2015 \
-	  @jamen/dev-server \
-	  autoprefixer \
-	  clean-css-cli \
-	  node-sass \
-	  postcss-cli \
-	  rollup \
-	  rollup-plugin-node-resolve \
-	  rollup-plugin-replace \
-	  uglify-js
+	npm i \
+		hyperapp
+	npm i -D \
+		@jamen/dev-server \
+		clean-css-cli \
+		node-sass \
+		rollup \
+		rollup-plugin-node-resolve \
+		uglify-js
