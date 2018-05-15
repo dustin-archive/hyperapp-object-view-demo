@@ -31,7 +31,7 @@ css:
 
 minify:
 	uglifyjs dist/app.js -o dist/app.js -c -m --source-map content='dist/app.js.map',url='app.js.map'
-	cleancss dist/app.css -o dist/app.css --source-map --source-map-inline-sources
+	cleancss -O2 dist/app.css -o dist/app.css --source-map --source-map-inline-sources
 
 setup:
 	npm i \
