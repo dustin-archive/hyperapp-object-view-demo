@@ -4,8 +4,8 @@
 import { h, app } from 'hyperapp'
 import ObjectView from '@whaaaley/hyperapp-object-view'
 
-var state = {
-  ObjectView: {},
+
+var test = {
   array: [
     'value0',
     'value1',
@@ -46,6 +46,11 @@ var state = {
   },
   string: 'foobar',
   undefined: void 0
+}
+
+var state = {
+  test: test,
+  ObjectView: {}
 }
 
 var actions = {

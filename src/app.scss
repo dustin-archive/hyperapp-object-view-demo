@@ -1,5 +1,18 @@
 
 //
+// # Fonts
+// =============================================================================
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src:
+  local('Roboto Mono'),
+  local('Roboto-Mono-Regular'),
+  url('fonts/roboto-mono-v5-latin-regular.woff2') format('woff2'),
+  url('fonts/roboto-mono-v5-latin-regular.woff') format('woff');
+}
+
+//
 // # Variables
 // =============================================================================
 
@@ -49,11 +62,10 @@ body {
   margin: 8px;
   border-radius: 4px;
   box-shadow: $shadow;
-  overflow: hidden;
+  overflow: scroll;
 
-  ._object-view {
+  > ._object-view {
     font-family: 'Roboto Mono';
-    line-height: 1.5em;
   }
 }
 

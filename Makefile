@@ -21,7 +21,7 @@ production:
 prep:
 	rm -rf dist
 	mkdir dist
-	cp -r images index.html favicon.png sitemap.xml dist
+	cp -r fonts images index.html favicon.png sitemap.xml dist
 
 js:
 	env $$(cat .env) rollup src/app.js -o dist/app.js -f iife -m -c
