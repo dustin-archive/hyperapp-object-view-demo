@@ -5,16 +5,25 @@ import { h, app } from 'hyperapp'
 import ObjectView from '@whaaaley/hyperapp-object-view'
 
 var state = {
+  ObjectView: {},
   array: [
     'value0',
     'value1',
     [
       'value0',
-      'value1'
+      'value1',
+      [
+        'nested0',
+        'nested1'
+      ]
     ],
     {
       key0: 'value0',
-      key1: 'value1'
+      key1: 'value1',
+      'ugly key name here': {
+        key0: 'value0',
+        key1: 'value1'
+      }
     }
   ],
   boolean: false,
@@ -39,18 +48,23 @@ var state = {
   undefined: void 0
 }
 
-var actions = {}
+var actions = {
+  ObjectView: ObjectView.actions
+}
 
-function view (state) {
-  return h('div', { class: 'app' }, [
-    h('img', { src: 'images/hyperapp-graphic-small-jp.png' }),
-    h('div', { class: 'object-view' }, [
-      ObjectView({
-        key: 'state',
-        value: state
-      })
+function App (d) {
+  return function (state) {
+    return h('div', { class: 'app' }, [
+      h('img', { src: 'images/hyperapp-graphic-small-jp.png' }),
+      h('div', { class: 'object-view' }, [
+        ObjectView.view('state', state)
+      ])
     ])
-  ])
+  }
+}
+
+function view () {
+  return App
 }
 
 app(state, actions, view, document.getElementById('app'))
