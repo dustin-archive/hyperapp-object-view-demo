@@ -1,14 +1,23 @@
 
-@charset 'UTF-8';
+//
+// # Fonts
+// =============================================================================
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src:
+  local('Roboto Mono'),
+  local('Roboto-Mono-Regular'),
+  url('fonts/roboto-mono-v5-latin-regular.woff2') format('woff2'),
+  url('fonts/roboto-mono-v5-latin-regular.woff') format('woff');
+}
 
 //
 // # Variables
 // =============================================================================
 
 $dark-3: rgb(15, 17, 19);
-
 $light-1: rgb(243, 245, 247);
-
 $shadow: 0 18px 36px -9px rgba($dark-3, 0.0625);
 
 //
@@ -58,6 +67,10 @@ body {
   border-radius: 4px;
   box-shadow: $shadow;
   overflow: scroll;
+
+  > ._object-view {
+    font-family: 'Roboto Mono';
+  }
 }
 
 .app {

@@ -4,7 +4,7 @@
 import { h, app } from 'hyperapp'
 import ObjectView from '@whaaaley/hyperapp-object-view'
 
-var state = {
+var test = {
   array: [
     'value0',
     'value1',
@@ -39,16 +39,20 @@ var state = {
   undefined: void 0
 }
 
-var actions = {}
+var state = {
+  test: test,
+  ObjectView: {}
+}
+
+var actions = {
+  ObjectView: ObjectView.actions
+}
 
 function view (state) {
   return h('div', { class: 'app' }, [
     h('img', { src: 'images/hyperapp-graphic-small-jp.png' }),
     h('div', { class: 'object-view' }, [
-      ObjectView({
-        key: 'state',
-        value: state
-      })
+      ObjectView.view('state', state)
     ])
   ])
 }
