@@ -4,7 +4,6 @@
 import { h, app } from 'hyperapp'
 import ObjectView from '@whaaaley/hyperapp-object-view'
 
-
 var test = {
   array: [
     'value0',
