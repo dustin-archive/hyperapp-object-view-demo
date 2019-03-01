@@ -29,6 +29,9 @@ var test = {
   function: function (x) {
     return x
   },
+  arrow: x => {
+    return x
+  },
   null: null,
   number: 1234,
   object: {
