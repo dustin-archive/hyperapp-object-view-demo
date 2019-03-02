@@ -1,46 +1,35 @@
 
+.EXPORT_ALL_VARIABLES:
+.ONESHELL:
+.PHONY: all start prep css js minify html
+.SILENT:
+
 PATH := node_modules/.bin:$(PATH)
 SHELL := /bin/bash
 
-.SILENT:
+all: NODE_ENV=production
 
-all: prep js css minify
+all: prep css js minify html
+	gzip -k -n -9 public/index.html
 
-demo: production all
-	dev-server dist --watch 'src/**/*' 'make'
-
-start: development prep js css
-	dev-server dist --watch 'src/**/*.js' 'make js' --watch 'src/**/*.scss' 'make css'
-
-development:
-	cp .env-development .env
-
-production:
-	cp .env-production .env
+start: prep css js html
+	node scripts/server --css "$(MAKE) css" --js "$(MAKE) js"
 
 prep:
-	rm -rf dist
-	mkdir dist
-	cp -r fonts images index.html favicon.png sitemap.xml dist
-
-js:
-	env $$(cat .env) rollup src/app.js -o dist/app.js -f iife -m -c
+	rm -rf public
+	mkdir public
+	cp -r src/_root/* public
 
 css:
-	node-sass src/app.scss -o dist --source-map true --source-map-contents
+	echo
+	node-sass src/app.scss -o public --source-map true --source-map-contents
+
+js:
+	$(ENV) rollup src/app.js -o public/app.js -f iife -m -c
 
 minify:
-	uglifyjs dist/app.js -o dist/app.js -c -m --source-map content='dist/app.js.map',url='app.js.map'
-	cleancss -O2 dist/app.css -o dist/app.css --source-map --source-map-inline-sources
+	uglifyjs public/app.js -o public/app.js -c -m --source-map "content='public/app.js.map',url='app.js.map'"
+	cleancss -O2 public/app.css -o public/app.css --source-map --source-map-inline-sources
 
-setup:
-	npm i \
-		@whaaaley/hyperapp-object-view \
-		hyperapp
-	npm i -D \
-		@jamen/dev-server \
-		clean-css-cli \
-		node-sass \
-		rollup \
-		rollup-plugin-node-resolve \
-		uglify-js
+html:
+	$(ENV) rollup src/index.js -f cjs -e fs -c | node > public/index.html
